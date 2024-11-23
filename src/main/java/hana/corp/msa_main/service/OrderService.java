@@ -4,6 +4,7 @@ import hana.corp.msa_main.domain.Order;
 import hana.corp.msa_main.domain.Item;
 import hana.corp.msa_main.domain.OrderRequest;
 import hana.corp.msa_main.domain.User;
+import hana.corp.msa_main.repository.ItemRepository;
 import hana.corp.msa_main.repository.OrderRepository;
 import hana.corp.msa_main.repository.ProductRepository;
 
@@ -18,13 +19,16 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final UserService userService;
     private final ProductRepository productRepository;
+    private final ItemRepository itemRepository;
 
     public OrderService(OrderRepository orderRepository,
                         UserService userService,
-                        ProductRepository productRepository) {
+                        ProductRepository productRepository,
+                        ItemRepository itemRepository) {
         this.orderRepository = orderRepository;
         this.userService = userService;
         this.productRepository = productRepository;
+        this.itemRepository = itemRepository;
     }
 
     // 2.1 Create Order
@@ -48,6 +52,7 @@ public class OrderService {
         Item item = new Item();
         item.setProduct(productRepository.getReferenceById(productId));
         item.setQuantity(quantity);
+        itemRepository.save(item);
         order.setItem(item);  // Assuming Order has setItem method
 
         return orderRepository.save(order);
