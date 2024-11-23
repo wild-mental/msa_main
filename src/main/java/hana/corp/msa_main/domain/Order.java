@@ -14,11 +14,11 @@ public class Order {
     private Long orderId;
 
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "itemId", nullable = false)
+    @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
     @Column(nullable = false)
