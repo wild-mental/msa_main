@@ -46,7 +46,7 @@ public class OrderController {
 
     @GetMapping("/update-check")
     public ResponseEntity<String> checkUpdate() {
-        String response = "<h1>MSA-MAIN : GitOps Implemented!</h1>";
+        String response = "<h1>MSA-MAIN : GitOps CI/CD Implemented!</h1>";
         return ResponseEntity.ok()
             .header("Content-Type", "text/html")
             .body(response);
