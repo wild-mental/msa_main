@@ -43,4 +43,12 @@ public class OrderController {
         List<Order> orders = orderService.getAllOrders();
         return ResponseEntity.ok(orders);
     }
+
+    @GetMapping("/update-check")
+    public ResponseEntity<String> checkUpdate() {
+        String response = "<h1>MSA-MAIN : GitOps Implemented!</h1>";
+        return ResponseEntity.ok()
+            .header("Content-Type", "text/html")
+            .body(response);
+    }
 }
