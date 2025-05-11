@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'hana.corp'
-version = 'aws'
+version = '1.0.0'
 
 java {
     toolchain {
