@@ -7,6 +7,10 @@ import hana.corp.msa_main.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.xml.bind.DatatypeConverter;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +54,28 @@ public class OrderController {
         return ResponseEntity.ok()
             .header("Content-Type", "text/html")
             .body(response);
+    }
+
+    @RequestMapping("/hash")
+    public String getHash(String input) throws NoSuchAlgorithmException {
+        System.out.println("input : " + input);
+        String output = input;
+        for(int i = 0; i < 100_000; i++){
+            output = getMD5(output);
+            if (i % 1_000 == 0) {
+                System.out.print(".");
+            }
+        }
+        System.out.println();
+        return output;
+    }
+
+    private String getMD5(String input) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(input.getBytes());
+        byte[] digest = md.digest();
+        String resultHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
+        return resultHash;
     }
 
 }
