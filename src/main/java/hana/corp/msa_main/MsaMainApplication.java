@@ -10,4 +10,5 @@ public class MsaMainApplication {
         SpringApplication.run(MsaMainApplication.class, args);
     }
 
+    
 }
